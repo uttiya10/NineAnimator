@@ -26,7 +26,8 @@ class AnimeRatingView: UIView {
     @IBOutlet private weak var ratingStringLabel: UILabel!
     
     func update(rating: Float, scale: Float) {
-        let normalizedRating = rating / scale
+        // Ensure normalizedRating is not above 1, which can occur if the rating is larger than the scale
+        let normalizedRating = min(rating / scale, 1)
         let filledStartCount = Int(ceil(normalizedRating / 0.2))
         
         let formatter = NumberFormatter()
