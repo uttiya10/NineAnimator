@@ -127,8 +127,20 @@ extension MyAnimeList {
             animeInformation["Popularity"] = animeEntry.valueIfPresent(at: "popularity", type: Int.self)
             animeInformation["Rank"] = animeEntry.valueIfPresent(at: "rank", type: Int.self)
             animeInformation["Media Type"] = animeEntry.valueIfPresent(at: "media_type", type: String.self)
-            animeInformation["Number of Ratings"] = animeEntry.valueIfPresent(at: "num_scoring_users", type: Int.self)
+            
+            if let numOfRatings = animeEntry.valueIfPresent(at: "num_scoring_users", type: Int.self) {
+                let formattedNumber = numberFormatter.string(from: NSNumber(value: numOfRatings))
+                animeInformation["Number of Ratings"] = formattedNumber
+            }
+            
             animeInformation["NSFW"] = animeEntry.valueIfPresent(at: "nsfw", type: String.self)
+            
+            if let studiosObject = animeEntry.valueIfPresent(at: "studios", type: [NSDictionary].self) {
+                let studioString = studiosObject
+                    .compactMap { $0["name"] as? String }
+                    .joined(separator: " , ")
+                animeInformation["Studios"] = studioString
+            }
             
             self.information = animeInformation.mapValues { $0.description }
             
@@ -146,7 +158,7 @@ extension MyAnimeList {
     
     func listingAnime(from reference: ListingAnimeReference) -> NineAnimatorPromise<ListingAnimeInformation> {
         apiRequest("/anime/\(reference.uniqueIdentifier)", query: [
-            "fields": "alternative_titles,average_episode_duration,broadcast,created_at,end_date,main_picture,mean,media_type,nsfw,num_scoring_users,popularity,rank,synopsis,title,background,related_anime,related_anime{node{my_list_status{start_date,finish_date}}},num_episodes,start_date"
+            "fields": "alternative_titles,average_episode_duration,broadcast,created_at,end_date,main_picture,mean,media_type,nsfw,num_scoring_users,studios,popularity,rank,synopsis,title,background,related_anime,related_anime{node{my_list_status{start_date,finish_date}}},num_episodes,start_date"
         ]).then {
             response in
             guard let animeEntry = response.data.first else {
