@@ -22,6 +22,8 @@ import UIKit
 class ThisWeekTableViewCell: UITableViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var viewFullScheduleButton: UIButton!
+    @IBOutlet private weak var recommendationTitleText: UILabel!
+    @IBOutlet private weak var subtitleText: UILabel!
     
     private var recommendation: Recommendation?
     private weak var delegate: DiscoverySceneViewController?
@@ -78,6 +80,8 @@ extension ThisWeekTableViewCell {
         
         self.fullScheduleCalendarProvider = recommendation.completeItemListProvider() as? CalendarProvider
         self.viewFullScheduleButton.isHidden = self.fullScheduleCalendarProvider == nil
+        self.recommendationTitleText.text = recommendation.title
+        self.subtitleText.text = recommendation.subtitle
         
         collectionView.reloadData()
     }

@@ -467,6 +467,7 @@
 		BFAA489524DE0723009BE142 /* AnimeHub.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAA489424DE0723009BE142 /* AnimeHub.swift */; };
 		BFAA489724DE0BA6009BE142 /* AnimeHub+Featured.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAA489624DE0BA6009BE142 /* AnimeHub+Featured.swift */; };
 		BFBAEF5224DF228B00ADA414 /* AnimeHub+Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFBAEF5124DF228B00ADA414 /* AnimeHub+Anime.swift */; };
+		BFC9BBB92573087E00713219 /* Anilist+NewEpisodesCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFC9BBB82573087E00713219 /* Anilist+NewEpisodesCalendar.swift */; };
 		BFCBEE6624E0C4E100D8C54B /* FacebookParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCBEE6524E0C4E100D8C54B /* FacebookParser.swift */; };
 		BFE3339F24F353F1004B680F /* FourAnime+LinkRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE3339D24F34D77004B680F /* FourAnime+LinkRetriever.swift */; };
 		BFE34BF324EF5B670054F3AE /* MyAnimeList+UserRecommendations.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE34BF124EF550A0054F3AE /* MyAnimeList+UserRecommendations.swift */; };
@@ -1055,6 +1056,7 @@
 		BFAA489424DE0723009BE142 /* AnimeHub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimeHub.swift; sourceTree = "<group>"; };
 		BFAA489624DE0BA6009BE142 /* AnimeHub+Featured.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimeHub+Featured.swift"; sourceTree = "<group>"; };
 		BFBAEF5124DF228B00ADA414 /* AnimeHub+Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimeHub+Anime.swift"; sourceTree = "<group>"; };
+		BFC9BBB82573087E00713219 /* Anilist+NewEpisodesCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Anilist+NewEpisodesCalendar.swift"; sourceTree = "<group>"; };
 		BFCB22AA24DF378800406034 /* AnimeHub+Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnimeHub+Episode.swift"; sourceTree = "<group>"; };
 		BFCBEE6524E0C4E100D8C54B /* FacebookParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookParser.swift; sourceTree = "<group>"; };
 		BFE3339D24F34D77004B680F /* FourAnime+LinkRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FourAnime+LinkRetriever.swift"; sourceTree = "<group>"; };
@@ -1222,6 +1224,7 @@
 				2C0CFC382263B34300EC793E /* Anilist+Recommendation.swift */,
 				2CFE2D97227D379200030B1F /* Anilist+CalendarProvider.swift */,
 				BF95264524F1EAF600924B79 /* Anilist+UserRecommendations.swift */,
+				BFC9BBB82573087E00713219 /* Anilist+NewEpisodesCalendar.swift */,
 			);
 			path = Anilist;
 			sourceTree = "<group>";
@@ -2648,6 +2651,7 @@
 				2C91297321BB61BE00284FD0 /* RapidVideoParser.swift in Sources */,
 				65ED215D24DB3BC50040844C /* MonosChinos+Search.swift in Sources */,
 				2CD9B9A021FE2F1900203442 /* UIAlertAction+Properties.swift in Sources */,
+				BFC9BBB92573087E00713219 /* Anilist+NewEpisodesCalendar.swift in Sources */,
 				2CCC745C21C063EC0007502A /* BadNineAnime.swift in Sources */,
 				BFCBEE6624E0C4E100D8C54B /* FacebookParser.swift in Sources */,
 				2CEC219C2207FACA00A30F4F /* GogoAnime+LinkRetriever.swift in Sources */,

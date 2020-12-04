@@ -21,18 +21,24 @@ import Foundation
 import SwiftSoup
 
 extension Anilist {
-    func requestWeeklyCalendar() -> NineAnimatorPromise<[Anilist.CalendarItem]> {
+    /// - Parameter animeIDs: Filter calendar to only include certain anime
+    func requestWeeklyCalendar(animeIDs: [Int]? = nil) -> NineAnimatorPromise<[Anilist.CalendarItem]> {
         // Fetch calendar items from the start of today
         let startOfToday = Calendar.current.startOfDay(for: Date())
         // to 7 days after
         let sevenDaysFromToday = startOfToday.addingTimeInterval(604800)
         
-        return graphQL(fileQuery: "AniListCalendarQuery", variables: [
+        var graphQLVariables: [String: CustomStringConvertible] = [
             "page": 0,
             "perPage": 50,
             "startTime": Int(startOfToday.timeIntervalSince1970),
             "endTime": Int(sevenDaysFromToday.timeIntervalSince1970)
-        ]) .then {
+        ]
+        // Apply filter if provided
+        if animeIDs != nil {
+            graphQLVariables["animeIDs"] = animeIDs!
+        }
+        return graphQL(fileQuery: "AniListCalendarQuery", variables: graphQLVariables).then {
             [weak self] responseDictionary in
             guard let self = self else {
                 return nil

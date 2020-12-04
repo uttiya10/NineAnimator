@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twB-g2-laz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twB-g2-laz">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -98,8 +98,8 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="267"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="This Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdS-bf-mCi">
-                                            <rect key="frame" x="20" y="19" width="260" height="26"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="This Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdS-bf-mCi">
+                                            <rect key="frame" x="20" y="19" width="260" height="25.5"/>
                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -108,8 +108,21 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZx-eB-ztY">
-                                            <rect key="frame" x="288" y="15" width="106" height="30"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Calender Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0g-wj-L0t">
+                                            <rect key="frame" x="20" y="44.5" width="260" height="19.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="IUP-y6-z9V"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPrimaryText" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZx-eB-ztY">
+                                            <rect key="frame" x="288" y="19" width="106" height="45"/>
                                             <state key="normal" title="Show Schedule"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
@@ -119,7 +132,7 @@
                                             </connections>
                                         </button>
                                         <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kaV-Hm-R5A">
-                                            <rect key="frame" x="0.0" y="53" width="414" height="203"/>
+                                            <rect key="frame" x="0.0" y="72" width="414" height="184"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="180" id="Y5P-r6-3ZO"/>
@@ -133,7 +146,7 @@
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="thisweek.cell" id="PJS-bE-hgi" customClass="ThisWeekCellCollectionViewCell" customModule="NineAnimator" customModuleProvider="target">
-                                                    <rect key="frame" x="20" y="21.5" width="356" height="160"/>
+                                                    <rect key="frame" x="20" y="12" width="356" height="160"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                         <rect key="frame" x="0.0" y="0.0" width="356" height="160"/>
@@ -256,19 +269,25 @@
                                         </collectionView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="kaV-Hm-R5A" firstAttribute="top" secondItem="D0g-wj-L0t" secondAttribute="bottom" constant="8" id="5Ho-gZ-jgO"/>
                                         <constraint firstItem="kaV-Hm-R5A" firstAttribute="bottom" secondItem="eb3-i7-9bF" secondAttribute="bottomMargin" priority="750" id="7qk-kW-ba4"/>
+                                        <constraint firstItem="D0g-wj-L0t" firstAttribute="bottom" secondItem="WZx-eB-ztY" secondAttribute="bottom" id="8Nr-YQ-BjW"/>
                                         <constraint firstItem="BdS-bf-mCi" firstAttribute="top" secondItem="eb3-i7-9bF" secondAttribute="topMargin" constant="8" id="A2H-Sy-TEw"/>
+                                        <constraint firstItem="D0g-wj-L0t" firstAttribute="leading" secondItem="eb3-i7-9bF" secondAttribute="leadingMargin" id="G0a-N1-1A9"/>
                                         <constraint firstItem="BdS-bf-mCi" firstAttribute="leading" secondItem="eb3-i7-9bF" secondAttribute="leadingMargin" id="IAt-kf-3fs"/>
                                         <constraint firstItem="kaV-Hm-R5A" firstAttribute="leading" secondItem="eb3-i7-9bF" secondAttribute="leading" id="MPj-sl-g95"/>
                                         <constraint firstItem="WZx-eB-ztY" firstAttribute="leading" secondItem="BdS-bf-mCi" secondAttribute="trailing" constant="8" id="eA0-YQ-I08"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="WZx-eB-ztY" secondAttribute="trailing" id="lZA-KL-tLk"/>
-                                        <constraint firstItem="WZx-eB-ztY" firstAttribute="bottom" secondItem="BdS-bf-mCi" secondAttribute="bottom" id="ngT-AT-fWn"/>
-                                        <constraint firstItem="kaV-Hm-R5A" firstAttribute="top" secondItem="BdS-bf-mCi" secondAttribute="bottom" constant="8" id="p2E-2r-iPH"/>
+                                        <constraint firstItem="D0g-wj-L0t" firstAttribute="trailing" secondItem="BdS-bf-mCi" secondAttribute="trailing" id="lqW-ed-ly8"/>
+                                        <constraint firstItem="WZx-eB-ztY" firstAttribute="top" secondItem="BdS-bf-mCi" secondAttribute="top" id="ngT-AT-fWn"/>
                                         <constraint firstItem="kaV-Hm-R5A" firstAttribute="trailing" secondItem="eb3-i7-9bF" secondAttribute="trailing" id="s8n-0o-hLS"/>
+                                        <constraint firstItem="D0g-wj-L0t" firstAttribute="top" secondItem="BdS-bf-mCi" secondAttribute="bottom" id="thm-yq-2qT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="collectionView" destination="kaV-Hm-R5A" id="zVX-fh-06h"/>
+                                    <outlet property="recommendationTitleText" destination="BdS-bf-mCi" id="LSC-rI-N1s"/>
+                                    <outlet property="subtitleText" destination="D0g-wj-L0t" id="SR2-sU-cV6"/>
                                     <outlet property="viewFullScheduleButton" destination="WZx-eB-ztY" id="aL3-9A-jPm"/>
                                 </connections>
                             </tableViewCell>
@@ -302,7 +321,7 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7t-Oe-H6q">
+                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" horizontalCompressionResistancePriority="500" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j7t-Oe-H6q">
                                             <rect key="frame" x="321" y="15" width="73" height="45"/>
                                             <state key="normal" title="View More"/>
                                             <userDefinedRuntimeAttributes>
@@ -531,7 +550,7 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isThemable" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bw-Vm-E5a" customClass="ThemedBorderButton" customModule="NineAnimator" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Bw-Vm-E5a" customClass="ThemedBorderButton" customModule="NineAnimator" customModuleProvider="target">
                                                     <rect key="frame" x="142" y="49.5" width="90" height="27"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="90" id="Uh9-Sg-r6A"/>
@@ -804,6 +823,14 @@
             <point key="canvasLocation" x="-725" y="108"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="4Bw-Vm-E5a">
+            <size key="intrinsicContentSize" width="58" height="27"/>
+        </designable>
+        <designable name="Ifh-MG-Mxr">
+            <size key="intrinsicContentSize" width="161" height="30"/>
+        </designable>
+    </designables>
     <resources>
         <image name="TV Icon" width="30" height="30"/>
     </resources>

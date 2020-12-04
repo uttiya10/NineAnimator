@@ -1,4 +1,4 @@
-query($page: Int, $perPage: Int, $startTime: Int, $endTime: Int) {
+query($page: Int, $perPage: Int, $startTime: Int, $endTime: Int, $animeIDs: [Int]) {
     Page(page: $page, perPage: $perPage) {
         pageInfo {
             total
@@ -7,7 +7,8 @@ query($page: Int, $perPage: Int, $startTime: Int, $endTime: Int) {
         airingSchedules(
             sort: [TIME],
             airingAt_greater: $startTime,
-            airingAt_lesser: $endTime
+            airingAt_lesser: $endTime,
+            mediaId_in: $animeIDs
         ) {
             id
             episode
