@@ -80,12 +80,14 @@ class LibrarySubscriptionCell: UICollectionViewCell {
             notificationFetchingTask = UserNotificationManager
                 .default
                 .hasNotifications(for: animeLink)
-                .dispatch(on: .main)
+                .dispatch(on: .global()) // Fetch In Background
+                .dispatch(on: .main) // Update UI on Main Thread
                 .error {
                     [weak self] error in
                     Log.error("[LibrarySubscriptionCell] An unknown error has occurred that prevents the retrival of available states: %@", error)
-                    self?.updateStatusLabel.text = "Unknwon"
-                } .finally {
+                    self?.updateStatusLabel.text = "Unknown"
+                }
+                .finally {
                     [weak self] hasNewEpisode in
                     guard let self = self else { return }
                     

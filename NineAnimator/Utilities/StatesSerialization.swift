@@ -46,7 +46,7 @@ func export(_ configuration: NineAnimatorUser) -> URL? {
             history: configuration.recentAnimes,
             progresses: configuration.persistedProgresses,
             exportedDate: Date(),
-            trackingData: Dictionary(uniqueKeysWithValues: configuration.recentAnimes.compactMap {
+            trackingData: Dictionary(uniqueKeysWithValues: configuration.recentAnimes.uniqued().compactMap {
                 anime in do {
                     let context = NineAnimator.default.trackingContext(for: anime)
                     let data = try context.export()
@@ -75,9 +75,7 @@ func export(_ configuration: NineAnimatorUser) -> URL? {
 
 func merge(_ configuration: NineAnimatorUser, with fileUrl: URL, policy: NineAnimatorUser.MergePiority) throws {
     // Read the contents of the configuration file
-    guard fileUrl.startAccessingSecurityScopedResource() == true else {
-        throw NineAnimatorError.unknownError("Failed to access security scoped resource")
-    }
+    _ = fileUrl.startAccessingSecurityScopedResource()
     let serializedConfiguration = try Data(contentsOf: fileUrl)
     fileUrl.stopAccessingSecurityScopedResource()
     
@@ -107,9 +105,7 @@ func merge(_ configuration: NineAnimatorUser, with fileUrl: URL, policy: NineAni
 
 func replace(_ configuration: NineAnimatorUser, with fileUrl: URL) throws {
     // Read the contents of the configuration file
-    guard fileUrl.startAccessingSecurityScopedResource() == true else {
-        throw NineAnimatorError.unknownError("Failed to access security scoped resource")
-    }
+    _ = fileUrl.startAccessingSecurityScopedResource()
     let serializedConfiguration = try Data(contentsOf: fileUrl)
     fileUrl.stopAccessingSecurityScopedResource()
     
