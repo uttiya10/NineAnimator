@@ -462,6 +462,7 @@
 		BF064BAF24E30ACD005A44EB /* OpenStreamParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF064BAE24E30ACD005A44EB /* OpenStreamParser.swift */; };
 		BF1924A924E1FB12008164C2 /* YourUploadParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1924A824E1FB12008164C2 /* YourUploadParser.swift */; };
 		BF1CBEFC25253006003354B5 /* Aniwatch+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1CBEFB25253006003354B5 /* Aniwatch+Search.swift */; };
+		BF5C91B625D320130035B48A /* ImageSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5C91B525D320130035B48A /* ImageSelector.swift */; };
 		BF5FC2B9252BC1600074495C /* Aniwatch+Anime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FC2B8252BC1600074495C /* Aniwatch+Anime.swift */; };
 		BF5FC2BE252BC9BC0074495C /* Aniwatch+Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF5FC2BD252BC9BC0074495C /* Aniwatch+Episode.swift */; };
 		BF76D9F524EA27C000734C43 /* AnimeHub+Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCB22AA24DF378800406034 /* AnimeHub+Episode.swift */; };
@@ -1062,6 +1063,7 @@
 		BF064BAE24E30ACD005A44EB /* OpenStreamParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenStreamParser.swift; sourceTree = "<group>"; };
 		BF1924A824E1FB12008164C2 /* YourUploadParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourUploadParser.swift; sourceTree = "<group>"; };
 		BF1CBEFB25253006003354B5 /* Aniwatch+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aniwatch+Search.swift"; sourceTree = "<group>"; };
+		BF5C91B525D320130035B48A /* ImageSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelector.swift; sourceTree = "<group>"; };
 		BF5FC2B8252BC1600074495C /* Aniwatch+Anime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aniwatch+Anime.swift"; sourceTree = "<group>"; };
 		BF5FC2BD252BC9BC0074495C /* Aniwatch+Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Aniwatch+Episode.swift"; sourceTree = "<group>"; };
 		BF95264124F1E06B00924B79 /* AnilistUserRecommendations.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = AnilistUserRecommendations.graphql; sourceTree = "<group>"; };
@@ -1537,6 +1539,7 @@
 		2C4ABC7721B59C95009B4D47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				BF5C91A925D31FB70035B48A /* Image Search Scene */,
 				2C0DA2E3238B2784002C6447 /* Settings Scene */,
 				2C665570235CE70300A6126A /* Library Scene */,
 				2C71DEC1226CF748004F3AC3 /* Server Selection Scene */,
@@ -2316,6 +2319,14 @@
 			path = monoschinos.com;
 			sourceTree = "<group>";
 		};
+		BF5C91A925D31FB70035B48A /* Image Search Scene */ = {
+			isa = PBXGroup;
+			children = (
+				BF5C91B525D320130035B48A /* ImageSelector.swift */,
+			);
+			path = "Image Search Scene";
+			sourceTree = "<group>";
+		};
 		BF9EF266251D3B92007E8FB5 /* aniwatch.me */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,6 +2956,7 @@
 				2C12EDDB21BDE6B20064D2BD /* HalfFillViewControllerProtocol.swift in Sources */,
 				2CB0042922024BDA00351B7E /* CachedAnimeArtworkRetriver.swift in Sources */,
 				2C93BD5822230E36000411CB /* Kitsu+LibraryEntry.swift in Sources */,
+				BF5C91B625D320130035B48A /* ImageSelector.swift in Sources */,
 				2CE18B0E2374996800771A16 /* LibraryRecentlyWatchedCell.swift in Sources */,
 				2C57B3932568E64C00EFC694 /* CrashesDelegate.swift in Sources */,
 				2C7B27D62423D22A00DF1337 /* NineAnimator+Environment.swift in Sources */,
@@ -3458,7 +3470,10 @@
 		2C4ABC6E21B5881F009B4D47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NineAnimator/NineAnimator.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3486,7 +3501,10 @@
 		2C4ABC6F21B5881F009B4D47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = arm64;
+				ARCHS = (
+					arm64,
+					x86_64,
+				);
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = NineAnimator/NineAnimator.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3621,7 +3639,7 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.15.8;
+				minimumVersion = 6.0.0;
 			};
 		};
 		2CB67043249FCA06006C11A9 /* XCRemoteSwiftPackageReference "Alamofire" */ = {

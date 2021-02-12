@@ -17,6 +17,7 @@
 //  along with NineAnimator.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import UIKit
 
 class SearchViewController: UITableViewController, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
@@ -64,6 +65,11 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating, UISe
         
         // Hide table cell separators at empty state
         tableView.tableFooterView = UIView()
+        
+        // Add Reverse Image Search Button
+        if #available(iOS 14.0, *) {
+            navigationItem.rightBarButtonItems?.insert(UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(onReverseImageSearchButtonTapped)), at: 0)
+        }
         
         // Themes
         tableView.makeThemable()
@@ -251,7 +257,7 @@ extension SearchViewController {
     }
 }
 
-// MARK: - Source selection
+// MARK: - Navigation Bar Button Selections
 extension SearchViewController {
     @IBAction private func onSelectSourceButtonTapped(_ sender: Any) {
         let currentSource = NineAnimator.default.user.source
@@ -281,6 +287,12 @@ extension SearchViewController {
         
         alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(alertView, animated: true)
+    }
+    
+    @available(iOS 14.0, *)
+    @objc func onReverseImageSearchButtonTapped() {
+        let hostingView = UIHostingController(rootView: ImageSelector())
+        navigationController?.pushViewController(hostingView, animated: true)
     }
 }
 
