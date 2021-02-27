@@ -37,25 +37,27 @@ class EpisodeTableViewCell: UITableViewCell {
     private var progress: Float {
         get { episodeProgressView.progress }
         set {
-            let newPiority: UILayoutPriority = (newValue > 0.01) ? .defaultLow : .defaultHigh
-            if newPiority != hidesProgressLayoutConstraint.priority {
-                hidesProgressLayoutConstraint.priority = newPiority
-                setNeedsLayout()
-            }
-            
-            episodeProgressView.progress = newValue
-            
-            // Show as completed if >= 0.95
-            if newValue < 0.01 {
-                episodeProgressLabel.text = "Start Now"
-            } else if newValue < 0.95 {
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .percent
-                formatter.maximumFractionDigits = 1
+            DispatchQueue.main.async {
+                let newPriority: UILayoutPriority = (newValue > 0.01) ? .defaultLow : .defaultHigh
+                if newPriority != self.hidesProgressLayoutConstraint.priority {
+                    self.hidesProgressLayoutConstraint.priority = newPriority
+                    self.setNeedsLayout()
+                }
                 
-                episodeProgressLabel.text =
-                "\(formatter.string(from: NSNumber(value: 1.0 - newValue)) ?? "Unknown percentage") left"
-            } else { episodeProgressLabel.text = "Completed" }
+                self.episodeProgressView.progress = newValue
+                
+                // Show as completed if >= 0.95
+                if newValue < 0.01 {
+                    self.episodeProgressLabel.text = "Start Now"
+                } else if newValue < 0.95 {
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .percent
+                    formatter.maximumFractionDigits = 1
+                    
+                    self.episodeProgressLabel.text =
+                    "\(formatter.string(from: NSNumber(value: 1.0 - newValue)) ?? "Unknown percentage") left"
+                } else { self.episodeProgressLabel.text = "Completed" }
+            }
         }
     }
     
@@ -69,7 +71,10 @@ class EpisodeTableViewCell: UITableViewCell {
         
         // Set name and progress
         titleLabel.text = "Episode \(episodeLink.name)"
-        progress = Float(episodeLink.playbackProgress)
+        
+        DispatchQueue.global().async {
+            self.progress = Float(episodeLink.playbackProgress)
+        }
         
         // Add observer for progress updates
         NotificationCenter.default.addObserver(

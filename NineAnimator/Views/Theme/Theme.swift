@@ -58,6 +58,9 @@ struct Theme {
 
 // MARK: - Accessing Theme object
 extension Theme {
+    private static var themeQueue = DispatchQueue(label: "com.marcuszhou.nineanimator.themeQueue")
+    private static var provisionedLock = NSLock()
+    
     private(set) static var current: Theme = {
         if let theme = Theme.availableThemes[NineAnimator.default.user.theme] {
             return theme
@@ -66,13 +69,17 @@ extension Theme {
     
     static func provision(_ themable: Themable) {
         collectGarbage()
-        provisionedThemables.insert(ThemableContainer(themable: themable, view: nil))
+        _ = provisionedLock.lock {
+            provisionedThemables.insert(ThemableContainer(themable: themable, view: nil))
+        }
         themable.theme(didUpdate: current)
     }
     
     static func provision(view: UIView) {
         collectGarbage()
-        provisionedThemables.insert(ThemableContainer(themable: nil, view: view))
+        _ = provisionedLock.lock {
+            provisionedThemables.insert(ThemableContainer(themable: nil, view: view))
+        }
         update(current, for: view)
     }
     
@@ -82,15 +89,19 @@ extension Theme {
         Theme.current = theme
         if animated {
             UIView.animate(withDuration: 0.2) {
+                provisionedLock.lock {
+                    provisionedThemables.forEach {
+                        $0.themable?.theme(didUpdate: theme)
+                        update(theme, for: $0.view)
+                    }
+                }
+            }
+        } else {
+            provisionedLock.lock {
                 provisionedThemables.forEach {
                     $0.themable?.theme(didUpdate: theme)
                     update(theme, for: $0.view)
                 }
-            }
-        } else {
-            provisionedThemables.forEach {
-                $0.themable?.theme(didUpdate: theme)
-                update(theme, for: $0.view)
             }
         }
     }
@@ -238,7 +249,11 @@ extension Theme {
     private static var provisionedThemables = Set<ThemableContainer>()
     
     private static func collectGarbage() {
-        provisionedThemables = provisionedThemables.filter { $0.themable != nil || $0.view != nil }
+        themeQueue.async {
+            provisionedLock.lock {
+                provisionedThemables = provisionedThemables.filter { $0.themable != nil || $0.view != nil }
+            }
+        }
     }
     
     private struct ThemableContainer: Hashable {

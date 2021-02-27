@@ -45,22 +45,24 @@ class DetailedEpisodeTableViewCell: UITableViewCell {
     private var progress: Float {
         get { episodePlaybackProgressView.progress }
         set {
-            let newPiority: UILayoutPriority = (newValue > 0.01) ? .defaultLow : .defaultHigh
-            if newPiority != hideProgressViewConstraint.priority {
-                hideProgressViewConstraint.priority = newPiority
-                setNeedsLayout()
-            }
-            
-            episodePlaybackProgressView.progress = newValue
-            
-            if newValue < 0.95 {
-                let formatter = NumberFormatter()
-                formatter.numberStyle = .percent
-                formatter.maximumFractionDigits = 1
+            DispatchQueue.main.async {
+                let newPriority: UILayoutPriority = (newValue > 0.01) ? .defaultLow : .defaultHigh
+                if newPriority != self.hideProgressViewConstraint.priority {
+                    self.hideProgressViewConstraint.priority = newPriority
+                    self.setNeedsLayout()
+                }
                 
-                episodePlaybackProgressLabel.text =
-                "\(formatter.string(from: NSNumber(value: 1.0 - newValue)) ?? "Unknown percentage") left"
-            } else { episodePlaybackProgressLabel.text = "Completed" }
+                self.episodePlaybackProgressView.progress = newValue
+                
+                if newValue < 0.95 {
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .percent
+                    formatter.maximumFractionDigits = 1
+                    
+                    self.episodePlaybackProgressLabel.text =
+                    "\(formatter.string(from: NSNumber(value: 1.0 - newValue)) ?? "Unknown percentage") left"
+                } else { self.episodePlaybackProgressLabel.text = "Completed" }
+            }
         }
     }
     
@@ -106,8 +108,9 @@ class DetailedEpisodeTableViewCell: UITableViewCell {
         episodeSynopsisLabel.text = info.synopsis ?? "No synoposis found for this episode."
         
         // Progress
-        
-        progress = Float(info.parent.playbackProgress)
+        DispatchQueue.global().async {
+            self.progress = Float(info.parent.playbackProgress)
+        }
         
         // Listen to progress updates
         

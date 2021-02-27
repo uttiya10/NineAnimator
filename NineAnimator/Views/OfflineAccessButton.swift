@@ -63,30 +63,35 @@ class OfflineAccessButton: UIButton, Themable {
     
     private func commonInit() {
         layer.cornerRadius = 8
+        self.isEnabled = false // Disable button until OfflineContent has been fetched
         pointerEffect.hover(shadow: true, scale: true)
     }
     
     func setPresenting(_ episodeLink: EpisodeLink, delegate: OfflineAccessButtonDelegate? = nil) {
-        let offlineContent = OfflineContentManager
-            .shared
-            .content(for: episodeLink)
-        
-        self.episodeLink = episodeLink
-        self.offlineContent = offlineContent
-        self.delegate = delegate
-        
-        NotificationCenter.default.removeObserver(self)
-        setTitle(nil, for: .normal)
-        
-        // Add observer to listen to update notification
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onOfflineAccessStateUpdates(_:)),
-            name: .offlineAccessStateDidUpdate,
-            object: offlineContent
-        )
-        
-        updateContent()
+        DispatchQueue.global().async {
+            let offlineContent = OfflineContentManager
+                .shared
+                .content(for: episodeLink)
+            
+            self.episodeLink = episodeLink
+            self.offlineContent = offlineContent
+            self.delegate = delegate
+            NotificationCenter.default.removeObserver(self)
+            
+            // Add observer to listen to update notification
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(self.onOfflineAccessStateUpdates(_:)),
+                name: .offlineAccessStateDidUpdate,
+                object: offlineContent
+            )
+            
+            DispatchQueue.main.async {
+                self.isEnabled = true
+                self.setTitle(nil, for: .normal)
+                self.updateContent()
+            }
+        }
     }
     
     private func updateContent() {
